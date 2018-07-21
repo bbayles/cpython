@@ -173,6 +173,14 @@ class NetrcTestCase(unittest.TestCase):
         )
         self.assertEqual(nrc.hosts['default'], ('anonymous', None, 'user@site'))
 
+    def test_newline_comment_no_space(self):
+        nrc = self.make_nrc(
+            '\n'
+            '#Comment\n'
+            'default login anonymous password user@site\n'
+        )
+        self.assertEqual(nrc.hosts['default'], ('anonymous', None, 'user@site'))
+
 
 if __name__ == "__main__":
     unittest.main()
